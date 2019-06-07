@@ -1,5 +1,8 @@
 package com.prashanth.spring.functional.dsl;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,3 +12,4 @@ public class SpringFunctionalDSL {
         SpringApplication.run(SpringFunctionalDSL.class, args);
     }
 }
+
