@@ -3,7 +3,9 @@ package com.prashanth.spring.functional.dsl;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PersonService {
 
   private final Set<Person> people = new HashSet<>(

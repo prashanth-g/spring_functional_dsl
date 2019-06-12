@@ -27,6 +27,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
     }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
