@@ -1,13 +1,14 @@
 package com.prashanth.spring.functional.dsl;
 
-import static org.springframework.web.reactive.function.server.RouterFunctions.route;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.server.HandlerFunction;
 import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
 
 @SpringBootApplication
 public class SpringFunctionalDSL {
@@ -18,9 +19,9 @@ public class SpringFunctionalDSL {
 
   @Bean
   RouterFunction<ServerResponse> routes(PersonService personService) {
-    return route().GET("/people",
-        serverRequest -> ServerResponse.ok().syncBody(personService.all()))
-        .build();
+    return RouterFunctions.route().GET("/people",
+        request -> ServerResponse.ok().syncBody(personService.all())).build();
   }
+
 }
 
