@@ -17,12 +17,10 @@ public class SpringFunctionalDSL {
   }
 
   @Bean
-  RouterFunction<ServerResponse> routes(PersonService personService) {
+  RouterFunction<ServerResponse> routes(PersonService personService, PersonHandler personHandler) {
     return RouterFunctions.route()
-        .GET("/people",
-            request -> ServerResponse.ok().syncBody(personService.all()))
-        .GET("/people/{id}", request -> ServerResponse.ok().syncBody(
-            personService.byId(Long.parseLong(request.pathVariable("id")))))
+        .GET("/people", personHandler::handleGetAllReservations)
+        .GET("/people/{id}", personHandler::handleGetReservationsById)
         .POST("/people", request -> {
           Mono<Person> person = request.bodyToMono(Person.class);
           String name = person.block().getName();

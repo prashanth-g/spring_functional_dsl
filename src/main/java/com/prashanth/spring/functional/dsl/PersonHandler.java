@@ -5,6 +5,7 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
 
 @Component
 public class PersonHandler {
@@ -16,11 +17,12 @@ public class PersonHandler {
     this.personService = personService;
   }
 
-  ServerResponse handleGetAllReservations(ServerRequest serverRequest) {
-    return null;
+  Mono<ServerResponse> handleGetAllReservations(ServerRequest serverRequest) {
+    return ServerResponse.ok().syncBody(personService.all());
   }
 
-  ServerResponse handleGetReservationsById(ServerRequest serverRequest) {
-    return null;
+  Mono<ServerResponse> handleGetReservationsById(ServerRequest serverRequest) {
+    return ServerResponse.ok().syncBody(
+        personService.byId(Long.parseLong(serverRequest.pathVariable("id"))));
   }
 }
